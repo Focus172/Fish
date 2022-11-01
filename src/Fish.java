@@ -6,13 +6,11 @@ import javax.swing.*;
 //if I ever make the game public I may go open source, but first I need to finish it
 ////////////////////////////////
 
-class Feish {
+class Fish {
 
     //this calls the creation of the window when program is ran
     //fixes some issues with threading by using invokeLater
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(Feish::initWindow);
-    }
+    public static void main(String[] args) { SwingUtilities.invokeLater(Fish::initWindow); }
 
     private static void initWindow() {
 
