@@ -1,9 +1,11 @@
+package master;
+
 import javax.swing.*;
 
 ////////////////////////////////
-//welcome to the code for Feish
+//welcome to the code for Fish
 //this is a project that I will work on sometimes but is mainly a proof of concept
-//if I ever make the game public I may go open source, but first I need to finish it
+//if I ever make the game public I will accept code changes but first I need to finish it
 ////////////////////////////////
 
 class Fish {
@@ -14,18 +16,17 @@ class Fish {
 
     private static void initWindow() {
 
-        JFrame window = new JFrame("Feish");
+        JFrame window = new JFrame("Fish");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setResizable(false);
 
-        //creates contents of what will be shown
         Screen sc = new Screen();
         window.add(sc);
-        window.addKeyListener(sc);
-        window.setResizable(false);
+
         window.pack();
         window.setLocationRelativeTo(null); //opens in the center of the screen
-        window.setVisible(true); //makes visible
 
+        window.setVisible(true); //makes visible
     }
 
 }

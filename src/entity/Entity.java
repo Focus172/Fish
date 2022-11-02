@@ -1,3 +1,5 @@
+package entity;
+
 import java.awt.event.KeyEvent;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -13,31 +15,36 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import javax.swing.ImageIcon;
 
-
+import master.Screen;
 
 public class Entity {
 
-    public Point.Double pos; // position
-    public BufferedImage image; //image of the entity
-    public double size; //1 is the same size as the image file itself; multiplicative scaling
-    public String fileName;
+    protected Screen scr;
 
-    public Object model;
-    public ArrayList<Point> locations; //debug
-    public ArrayList<Point> locations2; //debug
-    public int damage; //damage you take when you hit it
+    public Point pos; // position
+    public int velo;
+    public BufferedImage eImage; //image of the entity
+    //public double size; //1 is the same size as the image file itself; multiplicative scaling
+    //public String fileName;
 
-    public Entity (Point.Double npos, double nsize, String nfileName, Object nmodel, int ndamage) {
-        pos = npos;
-        size = nsize;
-        model = nmodel;
-        image = loadImage(nfileName);
-        fileName = nfileName;
-        locations = new ArrayList<Point>();
-        locations2 = new ArrayList<Point>();
-        damage = ndamage;
+    //public Object model;
+    //public ArrayList<Point> locations; //debug
+    //public ArrayList<Point> locations2; //debug
+    //public int damage; //damage you take when you hit it
+
+    public Entity (int x, int y, Screen screen) { //, String fileName
+        pos = new Point(x, y);
+        scr = screen;
+        //this.size = size;
+        //this.model = model;
+        //image = loadImage(fileName);
+        //this.fileName = fileName;
+        //locations = new ArrayList<Point>();
+        //locations2 = new ArrayList<Point>();
+        //damage = ndamage;
     }
 
+    /*
     public BufferedImage loadImage(String fileName) {
 
         //loads the image for the player
@@ -47,9 +54,15 @@ public class Entity {
         return image;
 
     }
+     */
 
-    public void draw(Graphics g, ImageObserver observer, double rotation) {
-        BufferedImage copiedImage = loadImage(fileName);
+    public void draw(Graphics2D g2, Screen screenRef) { //, ImageObserver observer, double rotation
+        //BufferedImage copiedImage = loadImage(fileName);
+
+        g2.setColor(Color.BLACK);
+        g2.fillRect(pos.x, pos.y, screenRef.TILE_SIZE, screenRef.TILE_SIZE);
+
+
 //		double rads = Math.toRadians(-rotation);
 //		double sin = Math.abs(Math.sin(rads));
 //		double cos = Math.abs(Math.cos(rads));
@@ -70,9 +83,11 @@ public class Entity {
 //            observer
 //        );
 
+        /*
         double rads = Math.toRadians(-rotation);
         double sin = Math.abs(Math.sin(rads));
         double cos = Math.abs(Math.cos(rads));
+        */
 //		int w = (int) Math.floor(image.getWidth() * cos + image.getHeight() * sin);
 //		int h = (int) Math.floor(image.getHeight() * cos + image.getWidth() * sin);
 //		BufferedImage rotatedImage = new BufferedImage(image.getWidth()*4, image.getHeight()*4, image.getType());
@@ -84,7 +99,7 @@ public class Entity {
 //		rotateOp.filter(image,rotatedImage);
 
 
-
+    /*
         g.drawImage(
                 rotateImage(copiedImage, rotation),
                 (int)(pos.x - (int) Math.floor(image.getWidth() * cos + image.getHeight() * sin)),
@@ -102,28 +117,26 @@ public class Entity {
             ytests[i] = locations.get(i).y;
         }
         g.drawPolygon(xtests, ytests, xtests.length);
+
+     */
     }
 
-    public int collision(Entity other) { //
+    /*
+    public int collision(entity.Entity other) { //
         boolean out = false;
-        Point.Double otherPos = other.getPos();
+        Point otherPos = other.getPos();
         BufferedImage otherImg = other.getImage();
 
         return 1;
     }
+    */
 
-    public int getDamage() {
-        return damage;
+    public void tick() {
+        //do things
+        //mostly meant to be overwritten
     }
 
-    public Point.Double getPos() {
-        return pos;
-    }
-
-    public BufferedImage getImage() {
-        return image;
-    }
-
+    /*
     private BufferedImage rotateImage(BufferedImage buffImage, double angle) {
         double radian = Math.toRadians(-angle);
         double sin = Math.abs(Math.sin(radian));
@@ -148,5 +161,5 @@ public class Entity {
 
         return rotatedImage;
     }
-
+    */
 }
